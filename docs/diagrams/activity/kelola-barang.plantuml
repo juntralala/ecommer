@@ -1,0 +1,19 @@
+@startuml kelola-barang
+title Kelola Barang (Admin)
+
+|Admin|
+start
+:Halaman barang; 
+repeat :Memilih aksi kelola data barang;
+if (Memilih tambah) then (Ya)
+    
+elseif (Memilih update) then (Ya)
+elseif (Memilih delete) then (Ya)
+endif
+|Sistem|
+:Mengeksekusi permintaan \nkelola data barang;
+:Mengirim permintaan \nke database;
+:Berhasil Mengeksekusi \nkelola data barang;
+:Menampilkan hasil \nkelola data barang;
+stop
+@enduml

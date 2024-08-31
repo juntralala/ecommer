@@ -1,0 +1,20 @@
+@startuml pelanggan-login
+skinparam style strictuml
+autonumber 1 "0 : "
+title Sequence Diagram Login Pelanggan
+actor "Pelanggan" as pelanggan
+participant "Halaman Login" as login
+participant "Controller Auth" as auth
+participant "Tabel User" as userTable
+participant "Halaman Home" as dashboard
+
+pelanggan -> login ++ : Register Input
+login -> auth ++ : Data customers
+auth -> userTable ++ : Validasi inputan
+return Return data pelanggan
+group <b>seq</b> input valid? [Ya]
+    login <-- auth : Tampilkan (pesan kesalahan)
+    else Tidak
+    auth -> dashboard --++ : Tampilkan
+end
+@enduml

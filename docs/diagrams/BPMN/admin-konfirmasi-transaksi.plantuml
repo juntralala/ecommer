@@ -1,0 +1,16 @@
+@startuml admin-konfirmasi-transaksi
+title BPMN Kegiatan Input Kategori (Admin)
+
+|Admin|
+start
+:Masuk ke halaman \nkonfirmasi transaksi;
+repeat :Pilih dan konfirmasi transaksi;
+:Konfirmasi;
+|Sistem|
+repeat while () is (tidak) not (ya)
+:Update status transaksi;
+:Data transaksi berhasil dikonfirmasi;
+:Redirect ke halaman \ndata transaksi;
+:Tampil halaman \ndata transaksi;
+stop
+@enduml

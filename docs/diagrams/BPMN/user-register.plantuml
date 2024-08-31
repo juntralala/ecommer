@@ -1,0 +1,19 @@
+@startuml user-register
+
+title BPMN Proses Register
+
+|User|
+start
+:Masuk ke halaman register;
+repeat
+    :Input data register;
+    |Sistem|
+    :Autentikasi;
+repeat while () is (no) not (yes);
+:Menyimpan data;
+:Data berhasil \ndisimpan;
+:Redirect ke \nhalaman home;
+:Tampil \nhalaman home;
+stop
+
+@enduml

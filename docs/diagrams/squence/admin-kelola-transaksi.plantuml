@@ -1,0 +1,47 @@
+@startuml admin-kelola-transaksi
+skinparam style strictuml
+
+title Sequence Diagram Kelola Data Transaksi
+
+actor Admin as admin
+participant "Halaman Transaksi" as transaksi 
+participant "Halaman Tambah Transaksi" as transaksiAdd 
+participant "Halaman Update Transaksi" as transaksiUpdate 
+participant "Controller Transaction" as transactionController 
+participant "Tabel Transactions" as transactions 
+participant "Tabel Products" as products 
+participant "Tabel Customers" as customers 
+autonumber 1 "0 : "
+admin -> transaksi ++ : Lihat transaksi
+transaksi -> transactionController ++ : Minta data transaksi
+transactionController -> customers ++ : Get data customer
+transactionController -> products ++ : Get data product
+transactionController -> transactions ++ : Get data transaction
+return Return data transaksi 
+return Return data barang
+return Return customer
+return Tampilkan
+deactivate
+
+autonumber 1 "0 : "
+admin -> transaksi ++ : Pilih data transaksi
+transaksi -> transaksiUpdate ++ : Pembaruan data transaksi
+transaksiUpdate -> transactionController ++ : Update data transaksi
+transactionController -> transactions ++ : Validasi data transaksi
+return Return data transaksi
+group Valid? [Tidak]
+transaksiUpdate <-- transactionController : Tampilkan (pesan kesalahan)
+else Ya
+transaksi <-- transactionController : Tampilkan
+deactivate
+deactivate
+deactivate
+end
+
+autonumber 1 "0 : "
+admin -> transaksi ++ : Pilih transaksi
+transaksi -> transactionController ++ : hapus data transaksi
+transactionController -> transactions ++ : Hapus data
+return Terhapus data
+return Tampilkan
+@enduml

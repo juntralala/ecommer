@@ -1,0 +1,16 @@
+@startuml admin-update-barang
+title BPMN Kegiatan Memperbarui Barang (Admin)
+
+|Admin|
+start
+:Masuk ke halaman \ndata barang;
+repeat :Memilih data barang \nyang akan di update;
+:Memperbarui data barang;
+|Sistem|
+repeat while () is (tidak) not (ya)
+:Update data barang;
+:Data berhasil diupdate;
+:Redirect ke \nhalaman data barang;
+:Tampil halaman \ndata barang;
+stop
+@enduml

@@ -1,0 +1,177 @@
+@startuml toko-online-class-diagram
+title Toko Online
+left to right direction
+
+class Admin {
+    +email : varchar
+    +password : varchar
+    --
+    +forgetPassword()
+    +AdminValidasi()
+    +validasiEmail()
+    +validasiPassword()
+}
+class Product {
+    +id : int
+    +name : varchar
+    +slug : varchar
+    +categories_id : int
+    +description : longtext
+    +price : int
+    +quantity : int
+    +deleted_at : timestamp
+    +created_at : timestamp
+    +uploaded_at : timestamp
+    --
+    +getProducts()
+    +setProducts()
+}
+class ProductController {
+    +id : int
+    +name : varchar
+    +slug : varchar
+    +categories_id : int
+    +deascription : longtext
+    +price : int
+    +quantity : int
+    +created_at : timestamp
+    +deleted_at : timestamp
+    +uploaded_at : timestamp
+    --
+    +destroy($id)
+    +update(ProductReqest $request, $id)
+    +edit($id)
+    +store(ProductReqest $request)
+    +create()
+    +index()
+}
+class Categories {
+    +id : int
+    +category_name : varchar
+    +created_at : timestamp
+    +uploaded_at : timestamp
+    +deleted_at : timestamp
+    --
+    +getCategories()
+    +setCategories()
+}
+class CategoriesController {
+    +id : int
+    +cateogry_name : varchar
+    +deleted_at : timestamp
+    +created_at : timestamp
+    +uploaded_at : timestamp
+    --
+    +update(Request $request, $id)
+    +store(Request $request, $id)
+    +create()
+    +index()
+}
+class GaleriesPhoto {
+    +id : int
+    +product_id : int
+    +photo : varchar
+    +is_default : int
+    +deleted_at : timestamp
+    +created_at : timestamp
+    +uploaded_at : timestamp
+    --
+    +getGaleriesPhoto()
+    +setGaleriesPhoto()
+}
+class Login {
+    +email : varchar
+    +password : varchar
+    --
+    +getEmail()
+    +getPassword()
+}
+class ProductGaleryController {
+    +id : int
+    +product_id : int
+    +photo : varchar
+    +is_default : int
+    +deleted_at : timestamp
+    +created_at : timestamp
+    +uploaded_at : timestamp
+    --
+    +store(ProductGeleryRequest $request)
+    +create()
+    +index()
+}
+class Transaction {
+    +id : int
+    +customer_id : int
+    +uuid : varchar
+    +transaction_total : int
+    +transaction_status : varchar
+    +deleted_at : timestamp
+    +created_at : timestamp
+    +uploaded_at : timestamp
+    --
+    +getTransactions()
+    +setTransactions()
+}
+class TransactionController {
+    +id : int
+    +customer_id : int
+    +uuid : varchar
+    +transaction_total : int
+    +transaction_status : varchar
+    +deleted_at : timestamp
+    +created_at : timestamp
+    +uploaded_at : timestamp
+    --
+    +destroy($id)
+    +update(Request $request, $id)
+    +Operation1()
+    +show($id)
+    +index()
+}
+
+object "Dashboard Admin" as AdminDashboard {
+    --
+    +index()
+}
+object "Halaman Product" as ProductPage {
+    --
+    +index()
+}
+object "Halaman Category" as CategoryPage {
+    --
+    +index()
+}
+object "Halaman Galery Photo" as PhotoGaleryPage {
+    --
+    +index()
+}
+object "Halaman Transaction" as TransactionPage {
+    --
+    +index()
+}
+object Logout {
+    --
+    +index()
+}
+
+AdminDashboard <-- Admin : +dikelola oleh
+Admin -- Login
+AdminDashboard <|-- ProductPage : + mewarisi
+ProductPage  <|-- ProductController : +mewarisi
+ProductController -- Product : + mengakses
+ProductController -- GaleriesPhoto : + mengakses
+ProductController -- Categories : + mengakses
+AdminDashboard <|-- CategoryPage : + mewarisi
+CategoryPage <|-- CategoriesController : + mewarisi
+CategoriesController -- Categories : + mengakses
+AdminDashboard <|-- PhotoGaleryPage : + mewarisi
+PhotoGaleryPage <|-- ProductGaleryController : + mewarisi
+ProductGaleryController -- GaleriesPhoto : + mengakses
+AdminDashboard <|-- TransactionPage : + mewarisi
+TransactionPage <|-- TransactionController : + mewarisi
+TransactionController -- Transaction : + mengakses
+AdminDashboard <|-- Logout : + mewarisi
+
+Product -- Transaction
+
+@enduml

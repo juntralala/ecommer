@@ -1,0 +1,16 @@
+@startuml admin-delete-barang
+title BPMN Kegiatan Menghapus Barang (Admin)
+
+|Admin|
+start
+:Masuk ke halaman \ndata barang;
+repeat :Memilih data barang \nyang akan di hapus;
+:Konfirmasi;
+|Sistem|
+repeat while () is (tidak) not (ya)
+:Hapus data barang;
+:Data berhasil dihapus;
+:Redirect ke \nhalaman data barang;
+:Tampil halaman data barang;
+stop
+@enduml

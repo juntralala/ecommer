@@ -1,0 +1,16 @@
+@startuml register
+title Register
+
+|User|
+start
+:Membuka halaman register;
+|Sistem|
+:Menampilkan halaman register;
+|User|
+repeat :Mengisi form registrasi;
+|Sistem|
+repeat while (Validasi data) is (Invalid) not (Valid)
+:Menyimpan data registrasi pelanggan;
+:Menampilkan halaman home;
+stop
+@enduml

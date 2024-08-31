@@ -1,0 +1,16 @@
+@startuml admin-delete-transaksi
+title BPMN kegiatan input kategori (Admin)
+
+|Admin|
+start
+:Masuk ke halaman \nhalaman transaksi;
+repeat :Pilih dan konfirmasi transaksi;
+:Konfirmasi;
+|Sistem|
+repeat while () is (tidak) not (ya)
+:Hapus data status transaksi;
+:Data transaksi berhasil dihapus;
+:Redirect ke halaman \ndata transaksi;
+:Tampil halaman \ndata transaksi;
+stop
+@enduml

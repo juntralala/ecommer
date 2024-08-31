@@ -1,0 +1,61 @@
+@startuml admin-kelola-barang
+skinparam style strictuml
+autonumber 1 "0 : "
+
+title Sequence Diagran Kelola Data Barang
+
+actor "Admin" as admin
+participant "Halaman Barang" as barang
+participant "Halaman Tambah Barang" as barangAdd
+participant "Halaman Update Barang" as barangUpdate
+participant "Controller Product" as productController
+participant "Tabel products" as products
+participant "Tabel categories" as categories
+participant "Tabel product_galeries" as product_galeries
+
+admin -> barang ++ : Lihat Barang
+barang -> productController ++ : Minta data barang
+productController -> product_galeries ++ : Get foto barang
+productController -> categories ++ : Get kategori
+productController -> products ++ : Get data barang
+return Return data barang
+return Return data kategori
+return Return foto barang
+return Tampilkan
+deactivate
+
+autonumber 1 "0 : "
+admin -> barangAdd ++ : Input barang
+barangAdd -> productController ++ : Validasi inputan data barang
+productController -> products ++ : Simpan data barang
+return Return data barang
+group <b>seq</b> Inputan valid? [Tidak]
+    barangAdd <-- productController : Tampilkan (pesan kesalahan)
+else Ya
+    barang <-- productController -- : Tampilkan
+end
+deactivate
+
+autonumber 1 "0 : "
+admin -> barang ++ : Memilih barang
+barang -> barangUpdate ++ : Update barang
+barangUpdate -> productController ++ : Validasi data barang
+productController -> products ++ : simpan data pembaruan barang 
+return Return data barang
+group <b>seq<b/> Inputan valid?
+    barangUpdate <-- productController : Tampilkan (pesan kesalahan)
+else
+    barang <-- productController : Tampilkan
+end
+deactivate
+deactivate
+deactivate
+
+autonumber 1 "0 : "
+admin -> barang ++ : Memilih barang
+barang -> productController ++ : Hapus barang
+productController -> products ++ : Hapus data
+return Terhapus data
+return Tampilkan 
+
+@enduml

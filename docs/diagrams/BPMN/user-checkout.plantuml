@@ -1,0 +1,20 @@
+@startuml user-checkout
+title BPMN procedure checkout
+
+|User|
+start
+repeat :memilih produk;
+    :masuk ke halaman produk detail;
+    repeat :input jumlah barang yg akan dibeli;
+    |Sistem|
+    repeat while (apakah jumlah \npesanan lebih dari \nstok produk?) is (yes) not (no)
+    :masuk ke halaman checkout;
+    |User|
+    :mengisi form pesanan;
+    |Sistem|
+repeat while (melakukan checkout \natau tidak?) is (yes) not (no);
+:berhasil checkout;
+:redirect ke halaman berahasil checkout;
+:tampilkan halaman berhasil checkout;
+stop
+@enduml

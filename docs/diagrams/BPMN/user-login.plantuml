@@ -1,0 +1,17 @@
+@startuml user-login
+
+title BPMN Proses Login
+
+|User|
+start
+:Masuk ke halaman login;
+repeat
+:Input data login;
+    |Sistem|
+    :Autentikasi;
+repeat while () is (no) not (yes);
+:Redirect ke halaman \nhome / dashboard;
+:Tampil halaman \nhome / dashboard;
+stop
+
+@enduml

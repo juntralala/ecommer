@@ -1,0 +1,15 @@
+@startuml admin-input-kategori
+
+title BPMN Kegiatan Input Kategori (Admin)
+
+|Admin|
+start
+:Masuk ke halaman \nkategori barang;
+:Input data \nkategori barang baru;
+|Sistem|
+:Menyimpan data \nkategori barang;
+:Berhasil menyimpan \ndata ketegori barang;
+:Redirect ke halaman \ndata kategori barang;
+:Tampil halaman \ndata barang;
+stop
+@enduml

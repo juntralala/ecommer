@@ -1,0 +1,13 @@
+@startuml user-update-profile
+title BPMN Kegiatan Update Profile User
+
+|User|
+start
+:masuk ke halaman \nupdate profil;
+:mengubah data profil;
+|Sistem|
+:update profile user;
+:berhasil update \nprofil user;
+:tampilkan data \nprofil user; 
+stop
+@enduml

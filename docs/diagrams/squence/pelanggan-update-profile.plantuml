@@ -1,0 +1,22 @@
+@startuml pelanggan-update-profile
+skinparam style  strictuml
+
+title Sequence Diagram Update Profile
+
+actor Pelanggan as pelanggan
+participant "Halaman Profile" as profile
+participant "Controller Customer" as CustomerController  
+participant "Table Customers" as customers
+
+autonumber 1 "0 : "
+pelanggan -> profile ++ : Ubah profile
+profile -> CustomerController ++ : Data pelanggan
+CustomerController -> customers ++ : Update data pelanggan
+return Return data pelanggan
+group Valid? [Tidak]
+    profile <-- CustomerController : Tampilkan kesalahan
+else Ya
+    return Tampilkan
+    deactivate
+end
+@enduml

@@ -1,0 +1,15 @@
+@startuml login
+title Login
+
+|User|
+start
+:Input email dan password;
+|Sistem|
+:Validasi email dan password;
+if (Benar?) then (Yes)
+    :Menampilkan \nhalaman dashboard;
+else (No)
+    :Menampilkan kesalahan \nemail atau password;
+endif
+stop
+@enduml

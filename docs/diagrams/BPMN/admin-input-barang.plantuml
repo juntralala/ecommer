@@ -1,0 +1,14 @@
+@startuml admin-input-barang
+title BPMN Kegiatan Menambah Barang (Admin)
+
+|Admin|
+start
+:Masuk ke halaman tambah data barang;
+:Input data barang;
+|Sistem|
+:Menyimpan data paling baru;
+:Berhasil menyimpan data barang baru;
+:Redirect halaman data barang;
+:Tampil halaman data barang;
+end
+@enduml

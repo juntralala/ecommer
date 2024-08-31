@@ -1,0 +1,34 @@
+@startuml pelanggan-kelola-keranjang
+skinparam style strictuml
+
+title Sequence Pelanggan Kelola Barang Pada Keranjang
+actor Pelanggan as pelanggan
+participant "Halaman Katalog Barang" as katalogBarang
+participant "Halaman Keranjang Belanja" as keranjang
+participant "Controller Product" as ProductController
+participant "Tabel products" as products
+participant "Tabel categories" as categories
+
+autonumber 1 "0 : "
+pelanggan -> katalogBarang ++ : Lihat data katalog barang
+katalogBarang -> ProductController ++ : Minta data katalog barang
+ProductController -> categories ++ :  Get data kategori barang
+ProductController -> products ++ :  Get data barang
+return Return data barang 
+return Return data categori
+return Return View
+deactivate
+
+autonumber 1 " : "
+pelanggan -> katalogBarang ++ : Memilih barang
+katalogBarang ->keranjang ++ : Menambah barang
+keranjang -> ProductController ++ : Data barang pada keranjang
+return Return View
+deactivate
+deactivate
+
+autonumber 1 "0 : "
+pelanggan -> keranjang ++ : Memilih dan hapus barang
+keranjang -> ProductController ++ : Data barang pada keranjang
+return Return View
+@enduml

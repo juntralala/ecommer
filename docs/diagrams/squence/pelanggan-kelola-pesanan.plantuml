@@ -1,0 +1,27 @@
+@startuml pelanggan-kelola-pesanan
+skinparam style stictuml
+title Squence Diagram Transaksi
+actor Pelanggan as pelanggan
+participant "Halaman Keranjang Belanja" as keranjang
+participant "Controller Transaction" as TransactionController
+participant "Tabel products" as products
+participant "Tabel Transactions" as transactions
+
+autonumber 1 "0 : "
+pelanggan -> keranjang ++ : Lihat daftar barang di keranjang
+keranjang -> TransactionController ++ : Data barang pada keranjang 
+TransactionController -> products ++ : Get data barang
+return Return data barang
+return Tampilkan
+deactivate
+
+autonumber 1 "0 : "
+pelanggan -> keranjang ++ : Melakukan pengisian data diri dan melakukan checkout
+keranjang -> TransactionController ++ : Data transaksi
+TransactionController -> Validasi data transaksi ++ : Data transaksi
+return Return data transaksi
+group <b>SEQ</b> Inputan valid? [Tidak] 
+    keranjang <-- TransactionController : Tampilkan kesalahan
+else Ya
+    return Tampilkan 
+end

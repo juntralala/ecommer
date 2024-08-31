@@ -1,0 +1,44 @@
+@startuml admin-kelola-foto-barang
+skinparam style strictuml
+
+title Sequence Diagram Kelola Foto Barang
+actor Admin as admin
+participant "Halaman foto barang" as halamanFoto
+participant "Halaman tambah foto barang" as halamanFotoAdd
+participant "Controller ProductGaleries" as ProductGaleriesController
+participant "Tabel galeries" as galeries
+participant "Tabel products" as products
+
+autonumber 1 "0 : "
+admin -> halamanFoto ++ : Melihat foto
+halamanFoto -> ProductGaleriesController ++ : Minta data foto
+ProductGaleriesController -> products ++ : Get data barang
+ProductGaleriesController -> galeries ++ : Get data foto barang
+return Return data foto barang
+return Data data barang
+return Tampilkan
+deactivate
+
+autonumber 1 "0 : "
+admin -> halamanFoto ++ : Memilih
+halamanFoto -> halamanFotoAdd ++ : Input data foto barang
+halamanFotoAdd -> ProductGaleriesController ++ : Data foto barang
+ProductGaleriesController -> galeries ++ : Simpan data foto barang
+return Return data foto barang
+group Valid? [Tidak]
+halamanFotoAdd <-- ProductGaleriesController : Tampilkan (pesan kesalahan)
+else Ya
+halamanFoto <-- ProductGaleriesController : Tampilkan
+end
+deactivate
+deactivate
+deactivate
+
+autonumber 1 "0 : "
+admin -> halamanFoto ++ : Pilih foto barang
+halamanFoto -> ProductGaleries ++ : Hapus foto barang
+ProductGaleriesController -> galeries ++ : Delete data foto barang
+return Terhapus data foto barang
+return Tampilkan
+
+@enduml

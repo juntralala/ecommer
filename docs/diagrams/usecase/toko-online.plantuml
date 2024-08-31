@@ -1,0 +1,19 @@
+@startuml toko-online
+left to right direction
+actor Pelanggan as pelanggan
+actor Admin as admin
+
+admin --- (Mengelola data barang)
+admin --- (Mengelola data kategori barang)
+admin --- (Mengelola data transaksi)
+admin --- (Mengelola data foto barang)
+admin --- (Login)
+(Login) --- pelanggan
+(Register) --- pelanggan
+(Lihat barang) --- pelanggan
+(Memilih barang) --- pelanggan
+(Tambah barang ke keranjang) --- pelanggan
+(Hapus barang di keranjang) --- pelanggan
+(Membuat transaksi) --- pelanggan
+(Update profile) --- pelanggan
+@enduml

@@ -1,0 +1,54 @@
+@startuml admin-kelola-kategori
+skinparam style strictuml
+autonumber 1 "0 : "
+
+title Sequence Diagran Kelola Data kategori
+
+actor "Admin" as admin
+participant "Halaman Kategori Barang" as kategori
+participant "Halaman Update Kategori" as kategoriUpdate
+participant "Controller Categories" as categoryController
+participant "Tabel categories" as categories
+
+admin -> kategori ++ : Lihat kategori
+kategori -> categoryController ++ : Minta data kategori
+categoryController -> categories ++ : Get data kategori
+return Return data kategori
+return Tampilkan
+deactivate
+
+autonumber 1 "0 : "
+admin -> kategori ++ : Input kategori
+kategori -> categoryController ++ : Validasi inputan data kategori
+categoryController -> categories ++ : Simpan data kategori
+return Return data kategori
+group <b>seq</b> Inputan valid? [Tidak]
+    kategori <-- categoryController : Tampilkan (pesan kesalahan)
+else Ya
+    kategori <-- categoryController -- : Tampilkan
+end
+deactivate
+
+autonumber 1 "0 : "
+admin -> kategori ++ : Memilih kategori
+kategori -> kategoriUpdate ++ : Update kategori
+kategoriUpdate -> categoryController ++ : Validasi data kategori
+categoryController -> categories ++ : simpan data pembaruan kategori 
+return Return data kategori
+group <b>seq</b> Inputan valid?
+    kategoriUpdate <-- categoryController : Tampilkan (pesan kesalahan)
+else
+    kategori <-- categoryController : Tampilkan
+end
+deactivate
+deactivate
+deactivate
+
+autonumber 1 "0 : "
+admin -> kategori ++ : Memilih kategori
+kategori -> categoryController ++ : Hapus kategori
+categoryController -> categories ++ : Hapus data
+return Terhapus data
+return Tampilkan 
+
+@enduml
